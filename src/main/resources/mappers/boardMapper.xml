@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.example.spring02.boardMapper">
+
+	<select id="getBoardList" parameterType="org.example.spring02.form.BoardForm" resultType="org.example.spring.dto.BoardDto">
+	
+		SELECT BOARD_SEQ
+			, BOARD_RE_REF
+			, BOARD_RE_LEV
+			, BOARD_RE_SEQ
+			, BOARD_WRITER
+			, BOARD_SUBJECT
+			, BOARD_CONTENT
+			, BOARD_HITS
+			, DEL_YN
+			, INS_USER_ID
+			, INS_DATE
+			, UPD_USER_ID
+			, UPD_DATE
+		FROM SPRINGSQLEXAMPLE.TB_BOARD
+	
+	</select>
+
+</mapper>
