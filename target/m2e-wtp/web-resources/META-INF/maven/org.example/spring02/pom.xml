@@ -23,11 +23,21 @@
 		<!-- 에러위험 mybatis stop -->
 		<!-- 191220 Jackson 라이브러리 버전 -->
 		<jackson.version>2.9.5</jackson.version>
+		<!-- 191222 cglib 라이브러리 버전 -->
+		<cglib.version>3.2.3</cglib.version>
 	</properties>
 	
 	<dependencies>
 	
-		<!-- 에러위험 191220 mybatis 라이브러리 추가 start -->
+		<!-- 191222 CGLIB 라이브러리 추가 start -->
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib-nodep</artifactId>
+			<version>${cglib.version}</version>
+		</dependency>
+		<!-- 191222 CGLIB 라이브러리 추가 stop -->
+	
+		<!-- 191220 mybatis 라이브러리 추가 start -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
@@ -39,7 +49,7 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>${mybatis.spring.version}</version>
 		</dependency>
-		<!-- 에러위험 191220 mybatis 라이브러리 추가 stop --> 
+		<!-- 191220 mybatis 라이브러리 추가 stop --> 
 	
 		<!-- 191220 MySQL 라이브러리 추가  start -->
 		<dependency>
@@ -49,7 +59,7 @@
 		</dependency>
 		<!-- 191220 MySQL 라이브러리 추가  stop -->
 		
-		<!-- 191220 logback 라이브러리 추가 start -->
+		<!-- 191220 Logging logback 라이브러리 추가 start -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
@@ -62,7 +72,7 @@
 			<version>${logback.version}</version>
 		</dependency>
 		
-		<!-- 191220 logback 라이브러리 추가 stop -->
+		<!-- 191220 Logging logback 라이브러리 추가 stop -->
 		
 		<!-- 191220 Jackson 라이브러리 추가 start -->
 		<dependency>
@@ -70,9 +80,33 @@
 			<artifactId>jackson-annotations</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
+		<dependency>
+	        <groupId>com.fasterxml.jackson.core</groupId>
+	        <artifactId>jackson-databind</artifactId>
+	        <version>${jackson.version}</version>
+	    </dependency>	
+	    <dependency>
+	        <groupId>com.fasterxml.jackson.core</groupId>
+	        <artifactId>jackson-core</artifactId>
+	        <version>${jackson.version}</version>
+	    </dependency>
 		<!-- 191220 Jackson 라이브러리 추가 stop -->
 		
-		<!-- 191220 jdbc,test 라이브러리 추가 start -->
+	
+		<!-- Spring start -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!-- 191220 Spring jdbc,test 라이브러리 추가 start -->
 		
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -86,40 +120,24 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 		
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>${jackson.version}</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-			<version>${jackson.version}</version>
-		</dependency>
-		
 		<!-- 191220 jdbc,test 라이브러리 추가 stop -->
-	
-		<!-- Spring -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>${org.springframework-version}</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${org.springframework-version}</version>
-		</dependency>
-		
+		<!-- Spring stop -->
 				
-		<!-- AspectJ -->
+		<!-- AspectJ start -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
 		</dependency>	
+		
+		<!-- 191222 aspectjweaver 라이브러리 추가 start -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+			<version>${org.aspectj-version}</version>
+		</dependency>
+		<!-- 191222 aspectjweaver 라이브러리 추가 stop -->
+		<!-- AspectJ stop -->
 
 		<!-- @Inject -->
 		<dependency>
@@ -128,24 +146,27 @@
 			<version>1</version>
 		</dependency>
 				
-		<!-- Servlet -->
+		<!-- Servlet start -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
 			<version>2.1</version>
 			<scope>provided</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+		<!-- Servlet start -->
 	
 		<!-- Test -->
 		<dependency>
@@ -154,7 +175,9 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>        
+		
 	</dependencies>
+	
     <build>
         <plugins>
             <plugin>

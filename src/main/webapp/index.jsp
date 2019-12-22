@@ -8,5 +8,6 @@
 </head>
 <body>
 <h1> index.jsp </h1>
+<a href="board/boardList">BoardList</a>
 </body>
 </html>

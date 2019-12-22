@@ -19,7 +19,7 @@ public class LoggerInterceptor extends HandlerInterceptorAdapter{
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		logger.debug("================================== LoggerInterceptor START ==================================");
-		logger.debug(" URL [{}]," + request.getRequestURI());
+		logger.debug(" URL [{}]" , request.getRequestURI());
 		
 		Enumeration paramNames = request.getParameterNames();
 		while(paramNames.hasMoreElements())

@@ -11,10 +11,15 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<annotation-driven />
+	<mvc:annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
+	<!-- 191222 resoureces mapping 추가  start-->
+	<resources mapping="/css/**" location="/css/"/>
+	<resources mapping="/img/**" location="/img/"/>
+	<resources mapping="/js/**" location="/js/"/>
+	<!-- 191222 resoureces mapping 추가  stop-->
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -22,7 +27,11 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="org.example.spring02" />
+	<!-- 191222 component 소스 수정 start -->
+	<context:component-scan base-package="org.example.spring02" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	<!-- 191222 component 소스 수정 stop -->
 	
 	<!-- 191220 loggerInterceptor start -->
 	<mvc:interceptors>
