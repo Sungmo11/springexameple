@@ -1,8 +1,8 @@
 package org.example.spring02.dto;
 
-import java.util.Date;
+import java.util.List;
 
-public class BoardDto {
+public class BoardDto extends CommonDto {
 	
 	int board_seq;
 	int board_re_ref;
@@ -20,6 +20,7 @@ public class BoardDto {
 	
 	String result;
 	
+	List<BoardFileDto> files;
 	
 	public int getBoard_seq() {
 		return board_seq;
@@ -130,6 +131,13 @@ public class BoardDto {
 	}
 	public void setResult(String result) {
 		this.result = result;
+	}
+	
+	public List<BoardFileDto> getFiles() {
+		return files;
+	}
+	public void setFiles(List<BoardFileDto> files) {
+		this.files = files;
 	}
 
 }

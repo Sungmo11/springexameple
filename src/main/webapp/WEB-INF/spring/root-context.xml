@@ -44,7 +44,7 @@
 	</bean>
 	
 	<aop:config proxy-target-class="true">
-		<aop:pointcut expression="execution(public * org.example.spring02..service.*Service.*(..))" id="serviceOperation"/>
+		<aop:pointcut id="serviceOperation" expression="execution(public * org.example.spring02..service.*Service.*(..))" />
 		<aop:advisor id="transactionAdvisor" pointcut-ref="serviceOperation" advice-ref="txAdvice"/>
 	</aop:config>
 	

@@ -16,7 +16,7 @@
 <link rel="stylesheet" type="text/css" href="/css/common/common.css"/>
 
 <!-- 공통 JavaScript -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="/js/common/jquery.js"></script>
 <script type="text/javascript">
 
 	$(document).ready(function()
@@ -31,11 +31,25 @@
 	}
 
 	/* 게시판 - 수정 페이지 이동 */
-	function goBoardupdate()
+	function goBoardUpdate()
 	{
 		var boardSeq = $("#board_seq").val();
 
-		location.href = "/board/boardupdate?boardSeq=" + boardSeq;
+		location.href = "/board/boardUpdate?boardSeq=" + boardSeq;
+	}
+
+	/* 게시판 - 답글 페이지 이동 */
+	function goBoardReply()
+	{
+		var boardSeq = $("#board_seq").val();
+
+		location.href = "/board/boardReply?boardSeq=" + boardSeq;
+	}
+
+	/* 게시판 - 첨부파일 다운로드 */
+	function fileDownload(fileNameKey, fileName, filePath)
+	{
+		location.href = "/board/fileDownload?fileNameKey=" + fileNameKey + "&fileName=" + fileName + "&filePath=" + filePath;
 	}
 
 	/* 게시판 - 상세 조회 */
@@ -84,6 +98,8 @@
 			var insDate 		= obj.ins_date; 
 			var updUserId 		= obj.upd_user_id;
 			var updDate 		= obj.upd_date;
+			var files			= obj.files;		
+			var filesLen		= files.length;
 					
 			str += "<tr>";
 			str += "<th>제목</th>";
@@ -101,12 +117,39 @@
 			str += "<th>내용</th>";
 			str += "<td colspan='3'>"+ boardSubject +"</td>";
 			str += "</tr>";
+
+			if(filesLen > 0)
+			{
+				for(var a = 0; a < filesLen; a++)
+				{
+					var boardSeq	= files[a].board_seq;
+					var fileNo 		= files[a].file_no;
+					var fileNameKey = files[a].file_name_key;
+					var fileName 	= files[a].file_name;
+					var filePath 	= files[a].file_path;
+					var fileSize 	= files[a].file_size;
+					var remark 		= files[a].remark;
+					var delYn 		= files[a].del_yn;
+					var insUserId 	= files[a].ins_user_id;
+					var insDate 	= files[a].ins_date;
+					var updUserId 	= files[a].upd_user_id;
+					var updDate 	= files[a].upd_date;
+					
+					console.log("fileName : " + fileName);
+
+					str += "<th>첨부파일</th>";
+					//str += "<td onclick='javascript:fileDownload(\"" + fileNameKey + "\", \"" + fileName + "\", \"" + filePath + "\");' style='cursor:Pointer'>"+ fileName +"</td>";
+					str += "<td><a href='/board/fileDownload?fileNameKey="+encodeURI(fileNameKey)+"&fileName="+encodeURI(fileName)+"&filePath="+encodeURI(filePath)+"'>" + fileName + "</a></td>";
+					str += "</tr>";
+				}
+			}
 		}
 		else
 		{
 			alert("등록된 글이 존재하지 않습니다.");
 			return;
 		}
+		
 		$("#tbody").html(str);
 	}
 
@@ -134,6 +177,7 @@
 		}
 	}
 
+	/* 게시판 - 삭제 (콜백 함수) */
 	function deleteBoardCallback()
 	{
 		if(obj != null)
@@ -177,8 +221,9 @@
 			</form>
 			<div class="btn_right mt15">
 				<button type="button" class="btn black mr5" onclick="javascript:goBoardList();">목록으로</button>
-				<button type="button" class="btn black mr5" onclick="javascript:goBoardUpdate();">수정하기</button>
+				<button type="button" class="btn black mr5" onclick="goBoardUpdate();">수정하기</button>
 				<button type="button" class="btn black" onclick="javascript:deleteBoard();">삭제하기</button>
+				<button type="button" class="btn black mr5" onclick="javascript:goBoardReply()">답글쓰기</button>
 			</div>
 		</div>
 	</div>

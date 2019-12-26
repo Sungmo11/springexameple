@@ -1,8 +1,11 @@
 package org.example.spring02.form;
 
 import java.util.Date;
+import java.util.List;
 
-public class BoardForm {
+import org.springframework.web.multipart.MultipartFile;
+
+public class BoardForm extends CommonForm {
 
 	int board_seq;
 	int board_re_ref;
@@ -14,11 +17,17 @@ public class BoardForm {
 	int board_hits;
 	String del_yn;
 	String ins_user_id;
-	String ins_date;
+	Date ins_date;
 	String upd_user_id;
-	String upd_date;
+	Date upd_date;
 	
 	String search_type;
+	
+	int board_parent_seq;
+	
+	String board_file;
+	String delete_file;
+	List<MultipartFile> files;
 	
 	
 	public int getBoard_seq() {
@@ -101,10 +110,10 @@ public class BoardForm {
 	}
 	
 	
-	public String getIns_date() {
+	public Date getIns_date() {
 		return ins_date;
 	}
-	public void setIns_date(String ins_date) {
+	public void setIns_date(Date ins_date) {
 		this.ins_date = ins_date;
 	}
 	
@@ -117,18 +126,59 @@ public class BoardForm {
 	}
 	
 	
-	public String getUpd_date() {
+	public Date getUpd_date() {
 		return upd_date;
 	}
-	public void setUpd_date(String upd_date) {
+	public void setUpd_date(Date upd_date) {
 		this.upd_date = upd_date;
 	}
 	
 	
-	public String getSearch_type() {
+	public String getSearch_type() 
+	{
 		return search_type;
 	}
-	public void setSearch_type(String search_type) {
+	public void setSearch_type(String search_type) 
+	{
 		this.search_type = search_type;
 	}
+	
+	public String getBoard_file() 
+	{
+		return board_file;
+	}
+	public void setBoard_file(String board_file)
+	{
+		this.board_file = board_file;
+	}
+	
+	public String getDelete_file()
+	{
+		return delete_file;
+	}
+	public void setDelete_file(String delete_file)
+	{
+		this.delete_file = delete_file;
+	}
+	
+	public List<MultipartFile> getFiles() 
+	{
+		return files;
+	}
+	public void setFiles(List<MultipartFile> files)
+	{
+		this.files = files;
+	}
+	
+	public int getBoard_parent_seq() 
+	{
+		return board_parent_seq;
+	}
+	public void setBoard_parent_seq(int board_parent_seq)
+	{
+		this.board_parent_seq = board_parent_seq;
+	}
+	
+	
+	
 }

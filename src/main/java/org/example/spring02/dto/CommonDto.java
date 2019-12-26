@@ -1,20 +1,38 @@
 package org.example.spring02.dto;
 
 public class CommonDto {
-
-	public void setLimit(int countPerList) {
-		// TODO Auto-generated method stub
-		
+	
+	int limit;
+	int offset;
+	String pagination;
+	
+	public int getLimit() 
+	{
+		return limit;
 	}
-
-	public void setOffset(int offset) {
-		// TODO Auto-generated method stub
-		
+	public void setLimit(int limit) 
+	{
+		this.limit = limit;
 	}
-
-	public void setpagination(String pagination) {
-		// TODO Auto-generated method stub
-		
+	
+	public int getOffset() 
+	{
+		return offset;
 	}
+	public void setOffset(int offset) 
+	{
+		this.offset = offset;
+	}
+	
+	public String getPagination() 
+	{
+		return pagination;
+	}
+	public void setPagination(String pagination) 
+	{
+		this.pagination = pagination;
+	}
+	
+	
 
 }

@@ -11,7 +11,7 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- Enables the Spring MVC @Controller programming model -->
-	<mvc:annotation-driven />
+	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
@@ -25,6 +25,8 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+		<!-- 191224 먼지모름 추가 -->
+		<beans:property name="order" value="1"/>
 	</beans:bean>
 	
 	<!-- 191222 component 소스 수정 start -->
@@ -41,6 +43,25 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 	<!-- 191220 loggerInterceptor stop -->
+	
+	<!-- 191224 BeanNameViewResolver 설정 추가  start -->
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="0"></beans:property>
+	</beans:bean>
+	<!-- 191224 BeanNameViewResolver 설정 추가  stop -->
+	
+	<!-- 191224 파일 다운로드를 처리할 클래스를 빈(bean)으로 등록 start -->
+	<beans:bean id="fileDownloadUtil" class="org.example.spring02.common.FileDownloadUtil" />
+		
+	<beans:bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+	<!-- 191224 파일 다운로드를 처리할 클래스를 빈(bean)으로 등록 stop -->
+	
+	<!-- 191224 MultipartResolver 설정 start -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="100000000" />
+		<beans:property name="maxInMemorySize" value="100000000" />
+	</beans:bean>
+	<!-- 191224 MultipartResolver 설정 stop -->
 	
 	<beans:bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
 	

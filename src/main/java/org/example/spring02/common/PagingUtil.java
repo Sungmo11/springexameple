@@ -20,7 +20,7 @@ public class PagingUtil {
 		int totalListCount = commonForm.getTotal_list_count(); // 총 게시물 수
 		int totalPageCount = totalListCount / countPerList; // 총 페이지 수
 		
-		if(totalListCount % countPerList > 0) // 총 페이지수를 구할때 int형으로 계산하면 나머지가 나머지가 있는 경우 게시물이 존재하기 때문에 총 페이지의 수를 수정
+		if((totalListCount % countPerList) > 0) // 총 페이지수를 구할때 int형으로 계산하면 나머지가 나머지가 있는 경우 게시물이 존재하기 때문에 총 페이지의 수를 수정
 		{
 			totalPageCount = totalPageCount + 1;
 		}
@@ -76,13 +76,14 @@ public class PagingUtil {
 		
 		pagination += "<a href='javascript:" + functionName + "(" + nextPerPage + ");' class=\"direction_right01\">[>]</a>";
 		pagination += "<a href='javascript:" + functionName + "(" + totalLastPage + ");' class=\"direction_right01\">[>>]</a>";
+		pagination += "</div>";
 		
-		int offset = ((currentPage - 1) * countPerPage) + 1; // 한 화면의 표출되는 게시물의 시작 번호의 -1 (쿼리 조건절)
+		int offset = ((currentPage - 1) * countPerPage); // 한 화면의 표출되는 게시물의 시작 번호의 -1 (쿼리 조건절)
 		
 		// LIMIT는 가져올 row의 수, OFFSET은 몇 번쨰 row부터 가져올지를 결정
 		commonDto.setLimit(countPerList);
 		commonDto.setOffset(offset);
-		commonDto.setpagination(pagination);
+		commonDto.setPagination(pagination);
 		
 		return commonDto;
 		
